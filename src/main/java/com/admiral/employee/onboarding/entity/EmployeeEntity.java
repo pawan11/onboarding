@@ -17,7 +17,7 @@ public class EmployeeEntity {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long empID;
+	private long empID;
 	
 	@Column(name = "employeename" , nullable = false)
 	private String employeeName;
