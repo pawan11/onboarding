@@ -1,9 +1,12 @@
-package com.admiral.employee.onboarding.exception;
+package com.admiral.employee.onboarding.exception.handler;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import com.admiral.employee.onboarding.exception.InvalidInputDataException;
+import com.admiral.employee.onboarding.exception.ResourceNotFoundException;
 
 @RestControllerAdvice
 public class GlobalExceptinalHandler {
