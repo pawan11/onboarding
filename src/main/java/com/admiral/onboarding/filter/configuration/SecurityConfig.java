@@ -28,14 +28,14 @@ public class SecurityConfig {
 
 	@Autowired
 	private JwtAuthFilter jwtAuthFilter;
-	
-	@Bean
-	public UserDetailsService userDetailsService() {
+
+    @Bean
+    UserDetailsService userDetailsService() {
 		return new UserInfoService();
 	}
 	
 	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
+	SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
 		httpSecurity
 					.csrf(csrf -> csrf.disable())
 					.authorizeHttpRequests(auth -> auth
@@ -52,20 +52,20 @@ public class SecurityConfig {
 	}
 	
 	@Bean
-	public PasswordEncoder passwordEncoder() {
+	PasswordEncoder bcryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 	
 	@Bean
-	public AuthenticationProvider authenticationProvider() {
+	AuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
 		authenticationProvider.setUserDetailsService(userDetailsService());
-		authenticationProvider.setPasswordEncoder(passwordEncoder());
+		authenticationProvider.setPasswordEncoder(bcryptPasswordEncoder());
 		return authenticationProvider();
 	}
 	
 	@Bean
-	public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception{
+	AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception{
 		return config.getAuthenticationManager();
 	}
 }
